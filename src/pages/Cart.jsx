@@ -46,23 +46,10 @@ export default function Cart() {
       </div>
       <div className="d-flex justify-content-center align-items-center flex-column">
         <h3>My Cart</h3>
-        <hr />
-        {cart && cart.length > 0 ? (
-          <div className="d-flex align-items-center justify-content-center p-3">
-            <p className="mx-3 mb-0">Product Name</p>
-            <p className="mx-3 mb-0">Category</p>
-            <p className="mx-3 mb-0">Price</p>
-            <p className="mx-3 mb-0">Quantity</p>
-            <p className="mx-3 mb-0">Seller</p>
-            <p className="mx-3 mb-0">Action</p>
-          </div>
-        ) : (
-          "No items in cart."
+        <br />
+        {cart && cart.length > 0 && (
+          <CartList cart={cart} onDelete={handleDelete} />
         )}
-
-        {cart.map((item, idx) => (
-          <CartList cart={item} onDelete={handleDelete} />
-        ))}
         {cart && cart.length > 0 && (
           <Button
             className="mt-3"

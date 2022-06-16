@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import OrderList from "../../components/OrderList";
 import { UserContext } from "../../context/UserContext";
 
 export default function MyOrders() {
@@ -11,7 +12,19 @@ export default function MyOrders() {
 
   const { user, setUser } = useContext(UserContext);
 
+  const [orders, setOrders] = useState();
+
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get("orders")
+      .then((res) => {
+        let myOrders = res.data.filter((item) => item.User.Id === user.Id);
+        setOrders(myOrders);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -50,6 +63,15 @@ export default function MyOrders() {
           </p>
         </div>
       </div>
+      {orders && orders.length > 0 ? (
+        <div>
+          <h3>My Orders</h3>
+          <br />
+          <OrderList orders={orders} />
+        </div>
+      ) : (
+        <p>You do not have any orders.</p>
+      )}
     </div>
   );
 }

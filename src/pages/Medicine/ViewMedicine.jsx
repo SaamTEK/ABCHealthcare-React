@@ -68,6 +68,7 @@ export default function ViewMedicine() {
               by: <b>{product.Seller}</b>
             </p>
             <p>Product Description: {product.Description}</p>
+            <p>Category: {product.Category.Name}</p>
             <h4>
               Price: <b>₹{product.Price}</b>
             </h4>
