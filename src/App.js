@@ -26,6 +26,14 @@ import ViewUser from "./pages/User/ViewUser";
 import ListUsers from "./pages/User/ListUsers";
 import EditUser from "./pages/User/EditUser";
 
+import ListCategories from "./pages/Category/ListCategories";
+import AddCategory from "./pages/Category/AddCategory";
+import EditCategory from "./pages/Category/EditCategory";
+
+import Profile from "./pages/Profile/Profile";
+import EditProfile from "./pages/Profile/EditProfile";
+import MyOrders from "./pages/Profile/MyOrders";
+
 function App() {
   let navigate = useNavigate();
 
@@ -82,6 +90,12 @@ function App() {
             <Route path="register" element={<SignUp />} />
             <Route path="cart" element={<Cart />} />
 
+            <Route path="category">
+              <Route index element={<ListCategories />} />
+              <Route path="add" element={<AddCategory />} />
+              <Route path="edit/:id" element={<EditCategory />} />
+            </Route>
+
             <Route path="medicine">
               <Route index element={<ListMedicines />} />
               <Route path=":id" element={<ViewMedicine />} />
@@ -94,6 +108,12 @@ function App() {
               <Route path=":id" element={<ViewUser />} />
               <Route path="add" element={<AddUser />} />
               <Route path="edit/:id" element={<EditUser />} />
+            </Route>
+
+            <Route path="profile">
+              <Route index element={<Profile />} />
+              <Route path="edit" element={<EditProfile />} />
+              <Route path="orders" element={<MyOrders />} />
             </Route>
 
             <Route path="admin">

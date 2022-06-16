@@ -14,6 +14,7 @@ export default function DataTable({
   dataFields,
   getter,
   setter,
+  details = true,
   type = "products",
 }) {
   const [show, setShow] = useState(false);
@@ -72,14 +73,20 @@ export default function DataTable({
                 <td>{String(dataFieldSubset[k])}</td>
               ))}
               <td style={{ textAlign: "right" }}>
-                <Button size="sm" variant="outline-secondary" className="mx-1">
-                  <Link
-                    style={{ color: "inherit", textDecoration: "none" }}
-                    to={`/${type}/${i.Id}`}
+                {details && (
+                  <Button
+                    size="sm"
+                    variant="outline-secondary"
+                    className="mx-1"
                   >
-                    Details
-                  </Link>
-                </Button>
+                    <Link
+                      style={{ color: "inherit", textDecoration: "none" }}
+                      to={`/${type}/${i.Id}`}
+                    >
+                      Details
+                    </Link>
+                  </Button>
+                )}
                 <Button size="sm" variant="outline-secondary" className="mx-1">
                   <Link
                     style={{ color: "inherit", textDecoration: "none" }}

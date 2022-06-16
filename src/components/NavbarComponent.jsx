@@ -58,7 +58,7 @@ export default function NavbarComponent({ handleLogout }) {
                   <NavLink
                     className="mx-2 my-2 my-lg-0"
                     style={{ textDecoration: "none" }}
-                    to="#"
+                    to="/profile"
                   >
                     Profile
                   </NavLink>

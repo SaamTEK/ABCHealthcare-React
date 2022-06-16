@@ -6,32 +6,12 @@ import { Button, Form, Spinner } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
-export default function EditUser() {
+export default function EditProfile() {
   let navigate = useNavigate();
-  let { id } = useParams();
 
-  const { user: userCtx } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
-  const InitialValues = {
-    UserName: "",
-    Password: "",
-    Roles: "User",
-    Email: "",
-    Fullname: "",
-    Address: "",
-  };
-
-  const [user, setUser] = useState(InitialValues);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get(`users/${id}`)
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -46,9 +26,9 @@ export default function EditUser() {
     e.preventDefault();
 
     axios
-      .put(`users/${id}`, user)
+      .put(`users/${user.Id}`, user)
       .then((res) => {
-        navigate(`/user/${id}`, { replace: true });
+        navigate(`/profile`, { replace: true });
       })
       .catch((err) => console.log(err));
   };
@@ -58,24 +38,15 @@ export default function EditUser() {
       <div className="d-flex">
         <div className="flex-column">
           <p>
-            {userCtx && userCtx.Roles === "Admin" ? (
-              <Link to="/admin" style={{ textDecoration: "none" }}>
-                Admin{" "}
-              </Link>
-            ) : (
-              <Link to="/" style={{ textDecoration: "none" }}>
-                Home{" "}
-              </Link>
-            )}
-            &gt;{" "}
-            <Link to={`/user`} style={{ textDecoration: "none" }}>
-              Users
+            <Link to="/" style={{ textDecoration: "none" }}>
+              Home{" "}
+            </Link>
+            &gt;
+            <Link to={`/profile`} style={{ textDecoration: "none" }}>
+              {" "}
+              Profile
             </Link>{" "}
-            &gt;{" "}
-            <Link to={`/user/${id}`} style={{ textDecoration: "none" }}>
-              User
-            </Link>{" "}
-            &gt; Edit User
+            &gt; Profile Edit
           </p>
         </div>
       </div>
@@ -147,7 +118,7 @@ export default function EditUser() {
         <Button className="me-2" size="sm" variant="outline-danger">
           <Link
             style={{ color: "inherit", textDecoration: "none" }}
-            to={`/user`}
+            to={`/profile`}
           >
             Go back
           </Link>
