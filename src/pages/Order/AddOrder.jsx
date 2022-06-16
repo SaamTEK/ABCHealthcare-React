@@ -20,24 +20,18 @@ export default function AddOrder() {
   const [order, setOrder] = useState(InitialValues);
   const [users, setUsers] = useState();
   const [products, setProducts] = useState();
-  const [orders, setOrders] = useState();
-  const [categories, setCategories] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const usersReq = axios.get("users");
     const productsReq = axios.get("medicines");
-    const ordersReq = axios.get("orders");
-    const categoriesReq = axios.get("categories");
 
     axios
-      .all([usersReq, productsReq, ordersReq, categoriesReq])
+      .all([usersReq, productsReq])
       .then(
         axios.spread((...res) => {
           setUsers(res[0].data.reverse());
           setProducts(res[1].data.reverse());
-          setOrders(res[2].data.reverse());
-          setCategories(res[3].data);
           setLoading(false);
         })
       )
