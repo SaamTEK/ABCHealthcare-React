@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
 export default function ViewMedicine() {
   let { id } = useParams();
+
+  let navigate = useNavigate();
 
   const { cart, setCart, user } = useContext(UserContext);
   const [product, setProduct] = useState();
@@ -15,7 +17,6 @@ export default function ViewMedicine() {
     axios
       .get(`medicines/${id}`)
       .then((res) => {
-        console.log(res.data);
         setProduct(res.data);
       })
       .catch((err) => console.log(err));
@@ -25,9 +26,9 @@ export default function ViewMedicine() {
     const productCart = { product, productQuantity };
     const cartArray = cart.concat(productCart);
     setCart(cartArray);
+    navigate("/");
+    alert("Added item to cart!");
   };
-
-  console.log(user);
 
   return (
     <div>

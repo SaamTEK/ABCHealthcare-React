@@ -3,11 +3,11 @@ import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartPlus, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../context/UserContext";
 
 export default function NavbarComponent({ handleLogout }) {
-  const { user } = useContext(UserContext);
+  const { user, cart } = useContext(UserContext);
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -25,7 +25,11 @@ export default function NavbarComponent({ handleLogout }) {
               className="mx-2 my-2 my-lg-0"
               style={{ textDecoration: "none" }}
             >
-              <FontAwesomeIcon icon={faCartShopping} />
+              {cart && cart.length > 0 ? (
+                <FontAwesomeIcon icon={faCartPlus} />
+              ) : (
+                <FontAwesomeIcon icon={faCartShopping} />
+              )}
             </NavLink>
             {!user ? (
               <>

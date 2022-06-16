@@ -37,8 +37,18 @@ import MyOrders from "./pages/Profile/MyOrders";
 import ListOrders from "./pages/Order/ListOrders";
 import AddOrder from "./pages/Order/AddOrder";
 import EditOrder from "./pages/Order/EditOrder";
+import Order from "./pages/Order";
 
 function App() {
+  (function () {
+    let token = localStorage.getItem("token");
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = token;
+    } else {
+      axios.defaults.headers.common["Authorization"] = null;
+    }
+  })();
+
   let navigate = useNavigate();
 
   const [user, setUser] = useState();
@@ -47,15 +57,6 @@ function App() {
   const [users, setUsers] = useState();
   const [categories, setCategories] = useState();
   const [orders, setOrders] = useState();
-
-  useEffect(() => {
-    let token = localStorage.getItem("token");
-    if (token) {
-      axios.defaults.headers.common["Authorization"] = token;
-    } else {
-      axios.defaults.headers.common["Authorization"] = null;
-    }
-  }, []);
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -99,6 +100,7 @@ function App() {
             <Route path="login" element={<SignIn />} />
             <Route path="register" element={<SignUp />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="place-order" element={<Order />} />
 
             <Route path="category">
               <Route index element={<ListCategories />} />

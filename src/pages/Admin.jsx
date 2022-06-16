@@ -130,6 +130,7 @@ export default function Admin() {
             data={orders.slice(0, 5)}
             dataFields={OrderDataFields}
             type="order"
+            details={false}
             getter={orders}
             setter={setOrders}
           />

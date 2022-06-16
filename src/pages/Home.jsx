@@ -16,7 +16,6 @@ export default function Home() {
     axios
       .get("medicines")
       .then((res) => {
-        console.log(res.data);
         setMedicines(res.data);
       })
       .catch((err) => console.log(err));
