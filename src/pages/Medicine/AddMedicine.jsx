@@ -1,12 +1,15 @@
 import { faCircleCheck, faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 export default function AddMedicine() {
   let navigate = useNavigate();
+
+  const { user } = useContext(UserContext);
 
   let InitialValues = {
     Name: "",
@@ -83,9 +86,15 @@ export default function AddMedicine() {
       <div className="d-flex">
         <div className="flex-column">
           <p>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              Home
-            </Link>{" "}
+            {user && user.Roles === "Admin" ? (
+              <Link to="/admin" style={{ textDecoration: "none" }}>
+                Admin{" "}
+              </Link>
+            ) : (
+              <Link to="/" style={{ textDecoration: "none" }}>
+                Home{" "}
+              </Link>
+            )}
             &gt;{" "}
             <Link to={`/medicine`} style={{ textDecoration: "none" }}>
               Products

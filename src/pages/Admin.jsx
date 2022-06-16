@@ -47,7 +47,7 @@ export default function Admin() {
 
   return (
     <div>
-      <h3>Welcome, {user.UserName}!</h3>
+      <h3>Welcome, {user.Fullname}!</h3>
       <p>Details at a glance</p>
       {loading && !users && !products && !orders ? (
         <div className="my-5">

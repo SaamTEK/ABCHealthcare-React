@@ -13,6 +13,8 @@ import { UserDataFields, UserDataTableColumns } from "../../data/UserData";
 export default function ListMedicines() {
   const [loading, setLoading] = useState(true);
 
+  const { user } = useContext(UserContext);
+
   const { users, setUsers } = useContext(UserContext);
 
   useEffect(() => {
@@ -30,9 +32,15 @@ export default function ListMedicines() {
       <div className="d-flex">
         <div className="flex-column">
           <p>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              Home
-            </Link>{" "}
+            {user && user.Roles === "Admin" ? (
+              <Link to="/admin" style={{ textDecoration: "none" }}>
+                Admin{" "}
+              </Link>
+            ) : (
+              <Link to="/" style={{ textDecoration: "none" }}>
+                Home{" "}
+              </Link>
+            )}
             &gt; Users
           </p>
         </div>

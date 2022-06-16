@@ -7,7 +7,7 @@ import { UserContext } from "../../context/UserContext";
 export default function ViewMedicine() {
   let { id } = useParams();
 
-  const { cart, setCart } = useContext(UserContext);
+  const { cart, setCart, user } = useContext(UserContext);
   const [product, setProduct] = useState();
   const [productQuantity, setProductQuantity] = useState(1);
 
@@ -27,18 +27,27 @@ export default function ViewMedicine() {
     setCart(cartArray);
   };
 
+  console.log(user);
+
   return (
     <div>
       <div className="d-flex">
         <div className="flex-column">
           <p>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              Home
-            </Link>{" "}
-            &gt;{" "}
-            <Link to="/medicine" style={{ textDecoration: "none" }}>
-              Products
-            </Link>{" "}
+            {user && user.Roles === "Admin" ? (
+              <Link to="/admin" style={{ textDecoration: "none" }}>
+                Admin{" "}
+              </Link>
+            ) : (
+              <Link to="/" style={{ textDecoration: "none" }}>
+                Home{" "}
+              </Link>
+            )}
+            {user && user.Roles === "Admin" && (
+              <Link to="/medicine" style={{ textDecoration: "none" }}>
+                &gt; Products{" "}
+              </Link>
+            )}
             &gt; Product Details
           </p>
         </div>

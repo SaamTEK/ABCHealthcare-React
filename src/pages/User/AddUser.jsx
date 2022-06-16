@@ -1,12 +1,15 @@
 import { faCircleCheck, faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 export default function AddUser() {
   let navigate = useNavigate();
+
+  const { user } = useContext(UserContext);
 
   const InitialValues = {
     UserName: "",
@@ -53,8 +56,26 @@ export default function AddUser() {
 
   return (
     <div>
-      <h3>Register a New User</h3>
-      <p>Please enter details</p>
+      <div className="d-flex">
+        <div className="flex-column">
+          <p>
+            {user && user.Roles === "Admin" ? (
+              <Link to="/admin" style={{ textDecoration: "none" }}>
+                Admin{" "}
+              </Link>
+            ) : (
+              <Link to="/" style={{ textDecoration: "none" }}>
+                Home{" "}
+              </Link>
+            )}
+            &gt;{" "}
+            <Link to={`/user`} style={{ textDecoration: "none" }}>
+              Users
+            </Link>{" "}
+            &gt; Add New User
+          </p>
+        </div>
+      </div>
       <Form noValidate validated={validated} className="w-50">
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Username</Form.Label>

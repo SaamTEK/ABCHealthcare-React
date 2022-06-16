@@ -22,6 +22,7 @@ import ViewMedicine from "./pages/Medicine/ViewMedicine";
 import EditMedicine from "./pages/Medicine/EditMedicine";
 
 import AddUser from "./pages/User/AddUser";
+import ViewUser from "./pages/User/ViewUser";
 import ListUsers from "./pages/User/ListUsers";
 import EditUser from "./pages/User/EditUser";
 
@@ -43,8 +44,15 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    let token = localStorage.getItem("token");
+    let UserId = localStorage.getItem("UserId");
+    if (token && UserId) {
+      axios
+        .get(`users/${UserId}`)
+        .then((res) => setUser(res.data))
+        .catch((err) => console.log(err));
+    }
+  }, []);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -83,7 +91,7 @@ function App() {
 
             <Route path="user">
               <Route index element={<ListUsers />} />
-              <Route path=":id" element={<ViewMedicine />} />
+              <Route path=":id" element={<ViewUser />} />
               <Route path="add" element={<AddUser />} />
               <Route path="edit/:id" element={<EditUser />} />
             </Route>

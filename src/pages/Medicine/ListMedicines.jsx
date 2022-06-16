@@ -13,7 +13,7 @@ export default function ListMedicines() {
   // const [products, setProducts] = useState();
   const [loading, setLoading] = useState(true);
 
-  const { products, setProducts } = useContext(UserContext);
+  const { products, setProducts, user } = useContext(UserContext);
 
   useEffect(() => {
     axios
@@ -30,9 +30,15 @@ export default function ListMedicines() {
       <div className="d-flex">
         <div className="flex-column">
           <p>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              Home
-            </Link>{" "}
+            {user && user.Roles === "Admin" ? (
+              <Link to="/admin" style={{ textDecoration: "none" }}>
+                Admin{" "}
+              </Link>
+            ) : (
+              <Link to="/" style={{ textDecoration: "none" }}>
+                Home{" "}
+              </Link>
+            )}
             &gt; Products
           </p>
         </div>

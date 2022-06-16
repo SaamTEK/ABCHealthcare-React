@@ -12,7 +12,11 @@ export default function ProductCard({ data }) {
         <div className="text-start my-2">
           <Card.Img
             variant="top"
-            src="https://www.netmeds.com/images/product-v1/150x150/812809/pure_nutrition_progut_plus_for_healthy_digestion_veg_capsules_60_s_0.jpg"
+            src={
+              data.Image
+                ? "https://localhost:44337" + data.Image
+                : "https://www.netmeds.com/images/product-v1/150x150/812809/pure_nutrition_progut_plus_for_healthy_digestion_veg_capsules_60_s_0.jpg"
+            }
             height="125"
             width="50"
           />

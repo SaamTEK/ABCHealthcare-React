@@ -38,6 +38,7 @@ export default function SignIn() {
           if (res.status === 200) {
             setUser(res.data.user);
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("UserId", res.data.user.Id);
             navigate("/", { replace: true });
           }
         })
