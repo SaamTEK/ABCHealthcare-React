@@ -76,8 +76,19 @@ export default function SignIn() {
             required
           />
         </Form.Group>
-        <Button variant="primary" onClick={(e) => handleSubmit(e)}>
-          Submit
+        <Button
+          variant="primary"
+          onClick={(e) => handleSubmit(e)}
+          className="me-1"
+        >
+          Sign In
+        </Button>
+        <Button
+          variant="outline-secondary"
+          onClick={(e) => navigate("/register")}
+          className="mx-1"
+        >
+          Register
         </Button>
       </Form>
     </div>

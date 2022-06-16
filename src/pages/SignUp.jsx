@@ -113,7 +113,7 @@ export default function SignUp() {
           />
         </Form.Group>
         <Button variant="primary" onClick={(e) => handleSubmit(e)}>
-          Submit
+          Sign Up
         </Button>
       </Form>
     </div>

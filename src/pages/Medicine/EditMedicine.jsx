@@ -66,7 +66,6 @@ export default function EditMedicine() {
     e.preventDefault();
 
     const { Category, ImageFile, ...productState } = product;
-    console.log(productState);
     axios
       .put(`medicines/${id}`, productState)
       .then((res) => {
@@ -159,6 +158,15 @@ export default function EditMedicine() {
               ))}
             </Form.Select>
           )}
+          <Form.Label>Product Availability </Form.Label>
+          <Form.Select
+            name="Availability"
+            value={product.Availability}
+            onChange={handleInputChange}
+          >
+            <option value={true}>Available</option>
+            <option value={false}>Unavailable</option>
+          </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Description</Form.Label>

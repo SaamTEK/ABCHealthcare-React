@@ -47,8 +47,10 @@ export default function Cart() {
       <div className="d-flex justify-content-center align-items-center flex-column">
         <h3>My Cart</h3>
         <br />
-        {cart && cart.length > 0 && (
+        {cart && cart.length > 0 ? (
           <CartList cart={cart} onDelete={handleDelete} />
+        ) : (
+          "Cart is Empty"
         )}
         {cart && cart.length > 0 && (
           <Button
