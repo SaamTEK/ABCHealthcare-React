@@ -90,7 +90,8 @@ export default function ViewMedicine() {
             <img
               src={
                 product.Image
-                  ? "https://localhost:44337" + product.Image
+                  ? "https://abchealthcaresaamtek.azurewebsites.net" +
+                    product.Image
                   : "https://www.netmeds.com/images/product-v1/150x150/812809/pure_nutrition_progut_plus_for_healthy_digestion_veg_capsules_60_s_0.jpg"
               }
               width="50%"
