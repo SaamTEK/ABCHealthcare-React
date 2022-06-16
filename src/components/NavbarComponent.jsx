@@ -47,13 +47,22 @@ export default function NavbarComponent({ handleLogout }) {
             ) : (
               <>
                 {user.Roles === "Admin" ? (
-                  <NavLink
-                    className="mx-2 my-2 my-lg-0"
-                    style={{ textDecoration: "none" }}
-                    to="admin"
-                  >
-                    Admin
-                  </NavLink>
+                  <>
+                    <NavLink
+                      className="mx-2 my-2 my-lg-0"
+                      style={{ textDecoration: "none" }}
+                      to="admin"
+                    >
+                      Admin
+                    </NavLink>
+                    <NavLink
+                      className="mx-2 my-2 my-lg-0"
+                      style={{ textDecoration: "none" }}
+                      to="/profile"
+                    >
+                      Profile
+                    </NavLink>
+                  </>
                 ) : (
                   <NavLink
                     className="mx-2 my-2 my-lg-0"

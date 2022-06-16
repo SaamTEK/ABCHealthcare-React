@@ -15,9 +15,8 @@ import {
 
 export default function ListCategories() {
   const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState();
 
-  const { user } = useContext(UserContext);
+  const { user, categories, setCategories } = useContext(UserContext);
 
   useEffect(() => {
     axios
@@ -66,8 +65,10 @@ export default function ListCategories() {
           tableColumns={CategoryDataTableColumns}
           data={categories}
           dataFields={CategoryDataFields}
-          type="category"
+          type="categorie"
           details={false}
+          getter={categories}
+          setter={setCategories}
         />
       )}
     </div>

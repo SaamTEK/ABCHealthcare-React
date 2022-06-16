@@ -136,6 +136,18 @@ export default function EditUser() {
             required
           />
         </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Select User Type</Form.Label>
+          <Form.Select
+            name="Roles"
+            value={user.Roles}
+            onChange={handleInputChange}
+          >
+            <option value={null}>Select User Type</option>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+          </Form.Select>
+        </Form.Group>
         <Button
           className="me-2"
           size="sm"

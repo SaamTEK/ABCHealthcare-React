@@ -34,6 +34,10 @@ import Profile from "./pages/Profile/Profile";
 import EditProfile from "./pages/Profile/EditProfile";
 import MyOrders from "./pages/Profile/MyOrders";
 
+import ListOrders from "./pages/Order/ListOrders";
+import AddOrder from "./pages/Order/AddOrder";
+import EditOrder from "./pages/Order/EditOrder";
+
 function App() {
   let navigate = useNavigate();
 
@@ -41,6 +45,8 @@ function App() {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState();
   const [users, setUsers] = useState();
+  const [categories, setCategories] = useState();
+  const [orders, setOrders] = useState();
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -80,6 +86,10 @@ function App() {
           setProducts,
           users,
           setUsers,
+          categories,
+          setCategories,
+          orders,
+          setOrders,
         }}
       >
         <NavbarComponent handleLogout={handleLogout} user={user} />
@@ -101,6 +111,12 @@ function App() {
               <Route path=":id" element={<ViewMedicine />} />
               <Route path="add" element={<AddMedicine />} />
               <Route path="edit/:id" element={<EditMedicine />} />
+            </Route>
+
+            <Route path="order">
+              <Route index element={<ListOrders />} />
+              <Route path="add" element={<AddOrder />} />
+              <Route path="edit/:id" element={<EditOrder />} />
             </Route>
 
             <Route path="user">

@@ -63,6 +63,8 @@ export default function ListMedicines() {
           data={products}
           dataFields={MedicineDataFields}
           type="medicine"
+          getter={products}
+          setter={setProducts}
         />
       )}
     </div>

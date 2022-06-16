@@ -118,7 +118,7 @@ export default function Admin() {
             <h4>Recent Orders:</h4>
             <Button size="sm" variant="outline-primary">
               <Link
-                to="/medicine/add"
+                to="/order/add"
                 style={{ color: "inherit", textDecoration: "none" }}
               >
                 Add New Order

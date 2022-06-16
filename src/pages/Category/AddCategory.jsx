@@ -33,7 +33,7 @@ export default function AddCategory() {
     axios
       .post(`categories`, category)
       .then((res) => {
-        navigate(`/category/${res.data.Id}`, { replace: true });
+        navigate(`/category/`, { replace: true });
       })
       .catch((err) => console.log(err));
   };

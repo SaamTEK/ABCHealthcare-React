@@ -4,24 +4,18 @@ import { Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DataTable from "../../components/DataTable";
 import { UserContext } from "../../context/UserContext";
-import {
-  MedicineDataFields,
-  MedicineDataTableColumns,
-} from "../../data/MedicineData";
-import { UserDataFields, UserDataTableColumns } from "../../data/UserData";
+import { OrderDataFields, OrderDataTableColumns } from "../../data/OrderData";
 
-export default function ListMedicines() {
+export default function ListOrders() {
   const [loading, setLoading] = useState(true);
 
-  const { user } = useContext(UserContext);
-
-  const { users, setUsers } = useContext(UserContext);
+  const { user, orders, setOrders } = useContext(UserContext);
 
   useEffect(() => {
     axios
-      .get("users")
+      .get("orders")
       .then((res) => {
-        setUsers(res.data.reverse());
+        setOrders(res.data.reverse());
         setLoading(false);
       })
       .catch((err) => console.log(err));
@@ -41,17 +35,17 @@ export default function ListMedicines() {
                 Home{" "}
               </Link>
             )}
-            &gt; Users
+            &gt; Orders
           </p>
         </div>
       </div>
       <div className="d-flex justify-content-between mb-2">
         <Button size="sm" variant="outline-primary">
           <Link
-            to="/user/add"
+            to="/order/add"
             style={{ color: "inherit", textDecoration: "none" }}
           >
-            Add New User
+            Add New Order
           </Link>
         </Button>
       </div>
@@ -61,12 +55,13 @@ export default function ListMedicines() {
         </div>
       ) : (
         <DataTable
-          tableColumns={UserDataTableColumns}
-          data={users}
-          dataFields={UserDataFields}
-          type="user"
-          getter={users}
-          setter={setUsers}
+          tableColumns={OrderDataTableColumns}
+          data={orders}
+          dataFields={OrderDataFields}
+          type="order"
+          details={false}
+          getter={orders}
+          setter={setOrders}
         />
       )}
     </div>
